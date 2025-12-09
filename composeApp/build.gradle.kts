@@ -45,7 +45,12 @@ kotlin {
             implementation(libs.androidx.lifecycle.viewmodelCompose)
             implementation(libs.androidx.lifecycle.runtimeCompose)
 
-            implementation("io.coil-kt.coil3:coil-compose:3.3.0")
+            implementation(libs.coil.compose)
+            implementation(libs.koin.core)
+            implementation(libs.koin.compose.viewmodel)
+
+            implementation("network.chaintech:cmptoast:1.0.8")
+
 
             implementation(project(":data"))
             implementation(project(":domain"))
@@ -57,7 +62,7 @@ kotlin {
         jvmMain.dependencies {
             implementation(compose.desktop.currentOs)
             implementation(libs.kotlinx.coroutinesSwing)
-            implementation("io.coil-kt.coil3:coil-network-okhttp:3.3.0")
+            implementation(libs.coil3.coil.network.okhttp)
         }
     }
 }

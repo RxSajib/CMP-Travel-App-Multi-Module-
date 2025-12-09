@@ -14,6 +14,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.sajib.presentation.listing.TravelListingViewModel
+import com.sajib.presentation.utils.message.showMessage
+import multiplatform.network.cmptoast.showToast
 import org.example.project.component.MyTravelItem
 
 @Composable
@@ -29,7 +31,7 @@ fun TravelScreen(viewModel : TravelListingViewModel){
                 LazyColumn(modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.surface).padding(innerPadding)) {
                     items(listOfTravelingListing.value.data){item ->
                         MyTravelItem(travelingListing = item, onclick = {
-
+                            showMessage(message = item.title)
                         })
                     }
                 }

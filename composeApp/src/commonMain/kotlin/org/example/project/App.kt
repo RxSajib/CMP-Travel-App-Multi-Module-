@@ -23,6 +23,7 @@ import org.example.project.component.MyTravelItem
 import org.example.project.screen.TravelScreen
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
+import org.koin.compose.viewmodel.koinViewModel
 
 import travelapp.composeapp.generated.resources.Res
 import travelapp.composeapp.generated.resources.compose_multiplatform
@@ -33,9 +34,7 @@ fun App() {
 
     MaterialTheme {
 
-        val viewModel = viewModel {
-            TravelListingViewModel(GetAllListingUseCase(TravelingListingImpl(DummyDataSource())))
-        }
+        val viewModel : TravelListingViewModel = koinViewModel<TravelListingViewModel>()
 
         TravelScreen(viewModel = viewModel)
     }

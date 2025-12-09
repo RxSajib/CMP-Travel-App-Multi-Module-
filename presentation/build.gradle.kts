@@ -49,6 +49,10 @@ kotlin {
                 implementation(project(":domain"))
                 implementation(libs.kotlinx.coroutines.core)
                 implementation(libs.androidx.lifecycle.viewmodelCompose)
+
+                implementation(libs.koin.core)
+                implementation(libs.koin.compose.viewmodel)
+                implementation("network.chaintech:cmptoast:1.0.8")
             }
         }
     }
