@@ -31,7 +31,7 @@ fun TravelScreen(viewModel : TravelListingViewModel){
                 LazyColumn(modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.surface).padding(innerPadding)) {
                     items(listOfTravelingListing.value.data){item ->
                         MyTravelItem(travelingListing = item, onclick = {
-                            showMessage(message = item.title)
+                            showMessage(message = item.getRatingDescriptions())
                         })
                     }
                 }

@@ -50,6 +50,8 @@ kotlin {
             implementation(libs.koin.compose.viewmodel)
 
             implementation("network.chaintech:cmptoast:1.0.8")
+            implementation("org.jetbrains.compose.material:material-icons-extended:1.7.3")
+
 
 
             implementation(project(":data"))
