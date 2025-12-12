@@ -33,7 +33,7 @@ kotlin {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
             implementation("io.coil-kt.coil3:coil-network-okhttp:3.3.0")
-
+            implementation(libs.ktor.client.okhttp)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -53,6 +53,13 @@ kotlin {
             implementation("org.jetbrains.compose.material:material-icons-extended:1.7.3")
 
 
+            // ktor dependency
+            implementation(libs.ktor.client.core)
+            implementation(libs.ktor.client.logging)
+            implementation(libs.ktor.content.negotiation)
+            implementation(libs.ktor.serialization.json)
+            // ktor dependency
+
 
             implementation(project(":data"))
             implementation(project(":domain"))
@@ -61,10 +68,14 @@ kotlin {
         commonTest.dependencies {
             implementation(libs.kotlin.test)
         }
+        nativeMain.dependencies {
+            implementation(libs.ktor.client.darwin)
+        }
         jvmMain.dependencies {
             implementation(compose.desktop.currentOs)
             implementation(libs.kotlinx.coroutinesSwing)
             implementation(libs.coil3.coil.network.okhttp)
+            implementation(libs.ktor.client.okhttp)
         }
     }
 }

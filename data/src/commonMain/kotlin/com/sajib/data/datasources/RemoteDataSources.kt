@@ -1,0 +1,25 @@
+package com.sajib.data.datasources
+
+import com.sajib.data.model.SignUpResponse
+import com.sajib.data.model.request.SignUpData
+import io.ktor.client.HttpClient
+import io.ktor.client.call.body
+import io.ktor.client.request.post
+import io.ktor.client.request.setBody
+
+class RemoteDataSources(private val httpClient: HttpClient, val baseUrl : String) {
+
+    private val BASE_URL = baseUrl
+    private val SIGNIN_END_POINT = "$BASE_URL/auth/signup"
+
+    suspend fun signUpAccount(signUpData: SignUpData) : Result<SignUpResponse> {
+       return try {
+            val response = httpClient.post(urlString = SIGNIN_END_POINT){
+                setBody(signUpData)
+            }
+           Result.success(response.body())
+        }catch (e : Exception){
+           Result.failure(e)
+        }
+    }
+}
