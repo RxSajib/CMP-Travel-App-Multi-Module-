@@ -1,4 +1,4 @@
-package com.sajib.presentation.signInScreen
+package com.sajib.presentation.ui.signInScreen
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
