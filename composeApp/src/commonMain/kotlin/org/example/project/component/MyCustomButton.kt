@@ -14,10 +14,25 @@ import androidx.compose.ui.unit.dp
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
-fun MyCustomButton(title : String, backgroundColor : Color = Color.Black, textColor : Color = Color.White, modifier: Modifier, onClickButton : () -> Unit){
-    Button(onClick = {
-        onClickButton.invoke()
-    }, colors = ButtonDefaults.buttonColors(contentColor = textColor, containerColor = backgroundColor), modifier = modifier.fillMaxWidth()){
+fun MyCustomButton(
+    isEnable: Boolean = true,
+    title: String,
+    backgroundColor: Color = Color.Black,
+    textColor: Color = Color.White,
+    modifier: Modifier,
+    onClickButton: () -> Unit
+) {
+    Button(
+        onClick = {
+            onClickButton.invoke()
+        },
+        enabled = isEnable,
+        colors = ButtonDefaults.buttonColors(
+            contentColor = textColor,
+            containerColor = if(isEnable) backgroundColor else Color.Gray
+        ),
+        modifier = modifier.fillMaxWidth()
+    ) {
         Text(
             text = title,
             style = MaterialTheme.typography.bodyMedium.copy(
@@ -30,6 +45,6 @@ fun MyCustomButton(title : String, backgroundColor : Color = Color.Black, textCo
 
 @Composable
 @Preview(showBackground = true)
-fun MyCustomButtonPreview(){
+fun MyCustomButtonPreview() {
     MyCustomButton(title = "Login", modifier = Modifier, onClickButton = {})
 }

@@ -47,6 +47,7 @@ kotlin {
                 implementation(libs.kotlin.stdlib)
 
                 implementation(project(":domain"))
+                implementation(project(":data"))
                 implementation(libs.kotlinx.coroutines.core)
                 implementation(libs.androidx.lifecycle.viewmodelCompose)
 
