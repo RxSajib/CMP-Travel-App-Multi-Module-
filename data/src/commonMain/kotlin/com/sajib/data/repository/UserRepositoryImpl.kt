@@ -27,6 +27,7 @@ class UserRepositoryImpl (val remoteDataSources: RemoteDataSources) : UserReposi
             )
             if(response.isSuccess){
                 val user = UserDataMapper.toUserData(response.getOrNull()!!)
+                print("sign in success ")
                 Result.success(user)
             }else {
                 Result.failure(Exception("Error"))

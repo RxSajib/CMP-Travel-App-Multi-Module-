@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidKotlinMultiplatformLibrary)
     alias(libs.plugins.androidLint)
+    kotlin("plugin.serialization") version "2.2.0"
 }
 
 kotlin {
@@ -57,6 +58,9 @@ kotlin {
                 implementation(libs.ktor.content.negotiation)
                 implementation(libs.ktor.serialization.json)
                 // ktor dependency
+
+                // kotlin-serialization
+                implementation(libs.kotlin.serialization.json)
             }
         }
 

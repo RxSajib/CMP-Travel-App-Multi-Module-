@@ -1,5 +1,8 @@
 package com.sajib.data.model
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class SignUpResponse(
     val access_token: String?= null,
     val expires_at: String ?= null,
@@ -9,6 +12,7 @@ data class SignUpResponse(
     val user: User?= null
 )
 
+@Serializable
 data class User(
     val avatar: String,
     val avatar_original: String,

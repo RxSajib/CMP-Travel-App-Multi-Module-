@@ -22,6 +22,7 @@ import com.sajib.presentation.listing.TravelListingViewModel
 import org.example.project.component.MyTravelItem
 import org.example.project.screen.TravelScreen
 import org.example.project.screen.signinScreen.SignInScreen
+import org.example.project.ui.screen.signupScreen.SignUpScreen
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.compose.viewmodel.koinViewModel
@@ -37,6 +38,7 @@ fun App() {
 
         val viewModel : TravelListingViewModel = koinViewModel<TravelListingViewModel>()
 
-        SignInScreen()
+      //  SignInScreen()
+        SignUpScreen()
     }
 }

@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -62,6 +63,17 @@ fun SignUpScreen(){
                 isPasswordVisibility = true
             )
             HeightGap(height = 10.dp)
+
+            Button(onClick = {
+                viewModel.signUpAccount(
+                    name = "Sajib Roy",
+                    emailAddress = "sabr@gmail.com",
+                    password = "123456",
+                    confirmPassword = "123456"
+                )
+            }){
+                Text("Login Account")
+            }
         }
     }
 }

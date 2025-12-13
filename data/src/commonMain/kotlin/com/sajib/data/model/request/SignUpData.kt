@@ -1,5 +1,8 @@
 package com.sajib.data.model.request
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class SignUpData(
     val name : String,
     val register_by : String,
