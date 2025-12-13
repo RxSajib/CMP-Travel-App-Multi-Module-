@@ -1,12 +1,12 @@
 package com.sajib.data.model
 
 data class SignUpResponse(
-    val access_token: String,
-    val expires_at: String,
-    val message: String,
+    val access_token: String?= null,
+    val expires_at: String ?= null,
+    val message: List<String> = emptyList(),
     val result: Boolean,
-    val token_type: String,
-    val user: User
+    val token_type: String?= null,
+    val user: User?= null
 )
 
 data class User(

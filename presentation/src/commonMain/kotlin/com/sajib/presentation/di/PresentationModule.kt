@@ -1,6 +1,7 @@
 package com.sajib.presentation.di
 
 import com.sajib.domain.usecase.GetAllListingUseCase
+import com.sajib.domain.usecase.SignUpAccountUseCase
 import com.sajib.presentation.listing.TravelListingViewModel
 import com.sajib.presentation.ui.signInScreen.SignInViewModel
 import com.sajib.presentation.ui.signupScreen.SignUpViewModel
@@ -18,6 +19,6 @@ val presentationModule = module {
     }
 
     viewModel {
-        SignUpViewModel()
+        SignUpViewModel(signUpAccountUseCase = get<SignUpAccountUseCase>())
     }
 }

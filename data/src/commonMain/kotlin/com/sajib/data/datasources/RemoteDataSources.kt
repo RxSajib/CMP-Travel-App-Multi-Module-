@@ -7,10 +7,10 @@ import io.ktor.client.call.body
 import io.ktor.client.request.post
 import io.ktor.client.request.setBody
 
-class RemoteDataSources(private val httpClient: HttpClient, val baseUrl : String) {
+class RemoteDataSources(private val httpClient: HttpClient) {
 
-    private val BASE_URL = baseUrl
-    private val SIGNIN_END_POINT = "$BASE_URL/auth/signup"
+    private val BASE_URL = "https://habibiyahabibi.com"
+    private val SIGNIN_END_POINT = "${BASE_URL}/api/v2/auth/signup"
 
     suspend fun signUpAccount(signUpData: SignUpData) : Result<SignUpResponse> {
        return try {
