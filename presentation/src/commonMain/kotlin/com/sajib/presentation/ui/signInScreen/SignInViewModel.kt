@@ -20,8 +20,6 @@ class SignInViewModel : ViewModel() {
         isValidEmailAddress = valid
     }
 
-
-
     val isButtonEnableForSignIn: Boolean
         get() = isValidEmailAddress && passwordInput.isNotEmpty() && passwordInput.length >= 6
 

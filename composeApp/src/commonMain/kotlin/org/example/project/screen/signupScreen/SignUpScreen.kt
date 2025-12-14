@@ -82,14 +82,14 @@ fun SignUpScreen() {
                 },
                 isPasswordInput = false,
                 isVisiblePasswordChange = {},
-                isPasswordVisibility = true
+                isPasswordVisibility = true,
             )
             HeightGap(height = 10.dp)
             MyCustomInputFiled(
                 placeHolderText = stringResource(Res.string.enter_email),
-                text = viewModel.nameInput,
-                onValueChange = { nameInput ->
-                    viewModel.nameInput = nameInput
+                text = viewModel.emailInput,
+                onValueChange = { emailInput ->
+                    viewModel.emailInput = emailInput
                 },
                 isPasswordInput = false,
                 isVisiblePasswordChange = {},
@@ -98,31 +98,35 @@ fun SignUpScreen() {
             HeightGap(height = 10.dp)
             MyCustomInputFiled(
                 placeHolderText = stringResource(Res.string.enter_password),
-                text = viewModel.nameInput,
-                onValueChange = { nameInput ->
-                    viewModel.nameInput = nameInput
+                text = viewModel.passwordInput,
+                onValueChange = { passwordInput ->
+                    viewModel.passwordInput = passwordInput
                 },
-                isPasswordInput = false,
-                isVisiblePasswordChange = {},
-                isPasswordVisibility = true
+                isPasswordInput = true,
+                isVisiblePasswordChange = {
+                    viewModel.isPasswordShows.value = !viewModel.isPasswordShows.value
+                },
+                isPasswordVisibility = viewModel.isPasswordShows.value
             )
             HeightGap(height = 10.dp)
             MyCustomInputFiled(
                 placeHolderText = stringResource(Res.string.confirm_password),
-                text = viewModel.nameInput,
-                onValueChange = { nameInput ->
-                    viewModel.nameInput = nameInput
+                text = viewModel.confirmPasswordInput,
+                onValueChange = { conformPasswordInput ->
+                    viewModel.confirmPasswordInput = conformPasswordInput
                 },
-                isPasswordInput = false,
-                isVisiblePasswordChange = {},
-                isPasswordVisibility = true
+                isPasswordInput = true,
+                isVisiblePasswordChange = {
+                    viewModel.isConfirmPasswordShows.value = !viewModel.isConfirmPasswordShows.value
+                },
+                isPasswordVisibility = viewModel.isConfirmPasswordShows.value
             )
             HeightGap(height = 20.dp)
             MyCustomButton(
                 title = stringResource(Res.string.sign_up_account),
                 modifier = Modifier,
                 onClickButton = {},
-                isEnable = true
+                isEnable = viewModel.isSignUpButtonEnable
             )
             HeightGap(height = 20.dp)
             Row(
