@@ -27,13 +27,25 @@ class SignUpViewModel constructor(val signUpAccountUseCase: SignUpAccountUseCase
     val isValidEmailAddress get() = AppConstant.emailRegex.matches(emailInput)
 
 
-    fun signUpAccount(name : String, emailAddress : String, password : String, confirmPassword : String){
+    fun signUpAccount() {
         viewModelScope.launch {
-         val response = signUpAccountUseCase.signUpAccount(name = name, emailOrPhone = emailAddress,
-                password = password, confirmPassword = confirmPassword, registerBy = "email")
+            val response = signUpAccountUseCase.signUpAccount(
+                name = nameInput,
+                emailOrPhone = emailInput,
+                password = passwordInput,
+                confirmPassword = confirmPasswordInput,
+                registerBy = "email"
+            )
+
+            response.onSuccess { userData ->
+                print("login success $userData")
+            }.onFailure { error ->
+                print("login error ${error.message}")
+            }
         }
     }
 
-    val isSignUpButtonEnable get() = nameInput.isNotEmpty() && emailInput.isNotEmpty() && passwordInput.isNotEmpty() && confirmPasswordInput.isNotEmpty()
-            && passwordInput.length >= 6 && passwordInput == confirmPasswordInput && isValidEmailAddress
+    val isSignUpButtonEnable
+        get() = nameInput.isNotEmpty() && emailInput.isNotEmpty() && passwordInput.isNotEmpty() && confirmPasswordInput.isNotEmpty()
+                && passwordInput.length >= 6 && passwordInput == confirmPasswordInput && isValidEmailAddress
 }

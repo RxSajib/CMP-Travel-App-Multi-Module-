@@ -125,7 +125,9 @@ fun SignUpScreen() {
             MyCustomButton(
                 title = stringResource(Res.string.sign_up_account),
                 modifier = Modifier,
-                onClickButton = {},
+                onClickButton = {
+                    viewModel.signUpAccount()
+                },
                 isEnable = viewModel.isSignUpButtonEnable
             )
             HeightGap(height = 20.dp)

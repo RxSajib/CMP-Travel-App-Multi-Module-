@@ -8,5 +8,5 @@ data class UserData(
     val phone : String,
     val avatar: String,
     val avatar_original: String,
-    val message : List<String> = emptyList()
+    val message : String
 )
