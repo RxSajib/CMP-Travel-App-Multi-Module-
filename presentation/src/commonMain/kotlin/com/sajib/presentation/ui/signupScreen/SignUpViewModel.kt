@@ -6,6 +6,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sajib.data.appConstant.AppConstant
+import com.sajib.data.utils.ProgressDialogUtils
 import com.sajib.domain.usecase.SignUpAccountUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -29,6 +30,7 @@ class SignUpViewModel constructor(val signUpAccountUseCase: SignUpAccountUseCase
 
     fun signUpAccount() {
         viewModelScope.launch {
+            ProgressDialogUtils.showDialog()
             val response = signUpAccountUseCase.signUpAccount(
                 name = nameInput,
                 emailOrPhone = emailInput,
@@ -42,6 +44,7 @@ class SignUpViewModel constructor(val signUpAccountUseCase: SignUpAccountUseCase
             }.onFailure { error ->
                 print("login error ${error.message}")
             }
+            ProgressDialogUtils.disableDialog()
         }
     }
 
