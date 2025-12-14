@@ -8,10 +8,16 @@
     <string name="enter_password">Enter password</string>
     <string name="forgot_password">Forgot password?</string>
     <string name="sign_in_account">Sign In Account</string>
+    <string name="sign_up_account">Sign Up Account</string>
     <string name="dont_have_an_account">Don't have an account</string>
     <string name="sign_up">Sign Up</string>
 
     <string name="sign_up_now">Sign Up Now</string>
     <string name="sign_up_now_details">Please sign up to continue our app</string>
+
+    <string name="enter_name">Enter name</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="already_have_account">Already have a account</string>
+    <string name="sign_in">Sign in</string>
 
 </resources>
