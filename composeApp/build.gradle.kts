@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.composeHotReload)
+    kotlin("plugin.serialization") version "2.3.0"
 }
 
 kotlin {
@@ -59,6 +60,10 @@ kotlin {
             implementation(libs.ktor.content.negotiation)
             implementation(libs.ktor.serialization.json)
             // ktor dependency
+
+            // navigation
+            implementation(libs.navigation3.ui)
+          //  implementation(libs.navigation3.runtime)
 
 
             implementation(project(":data"))

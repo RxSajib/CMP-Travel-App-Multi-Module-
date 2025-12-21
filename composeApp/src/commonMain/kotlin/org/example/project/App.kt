@@ -24,6 +24,7 @@ import com.sajib.domain.usecase.GetAllListingUseCase
 import com.sajib.presentation.listing.TravelListingViewModel
 import org.example.project.component.MyTravelItem
 import org.example.project.component.dialog.ProgressDialog
+import org.example.project.navigation.AppNavigation
 import org.example.project.screen.TravelScreen
 import org.example.project.screen.signinScreen.SignInScreen
 import org.example.project.ui.screen.signupScreen.SignUpScreen
@@ -52,7 +53,7 @@ fun App() {
 
 
         //  SignInScreen()
-        SignUpScreen()
+        AppNavigation()
 
         if(showDialog.value.response){
             ProgressDialog { showDialog.value.response }

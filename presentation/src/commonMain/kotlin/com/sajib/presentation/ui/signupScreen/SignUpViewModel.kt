@@ -40,7 +40,7 @@ class SignUpViewModel constructor(val signUpAccountUseCase: SignUpAccountUseCase
             )
 
             response.onSuccess { userData ->
-                print("login success $userData")
+                _signUpState.emit(SignUpState(data = userData))
             }.onFailure { error ->
                 print("login error ${error.message}")
             }

@@ -1,7 +1,6 @@
 package org.example.project.ui.screen.signupScreen
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -12,7 +11,6 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -23,33 +21,37 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation3.runtime.NavBackStack
+import androidx.navigation3.runtime.NavKey
 import com.sajib.presentation.ui.signupScreen.SignUpViewModel
 import org.example.project.component.BackButton
 import org.example.project.component.HeightGap
 import org.example.project.component.MyCustomButton
 import org.example.project.component.MyCustomInputFiled
+import org.example.project.navigation.Destination
+import org.example.project.utils.AppLogger
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.compose.viewmodel.koinViewModel
 import travelapp.composeapp.generated.resources.Res
 import travelapp.composeapp.generated.resources.already_have_account
 import travelapp.composeapp.generated.resources.confirm_password
-import travelapp.composeapp.generated.resources.dont_have_an_account
 import travelapp.composeapp.generated.resources.enter_email
 import travelapp.composeapp.generated.resources.enter_name
 import travelapp.composeapp.generated.resources.enter_password
 import travelapp.composeapp.generated.resources.sign_in
-import travelapp.composeapp.generated.resources.sign_in_account
-import travelapp.composeapp.generated.resources.sign_in_now_details
-import travelapp.composeapp.generated.resources.sign_up
 import travelapp.composeapp.generated.resources.sign_up_account
 import travelapp.composeapp.generated.resources.sign_up_now
 import travelapp.composeapp.generated.resources.sign_up_now_details
 
+private const val TAG = "SignUpScreen"
 @Composable
-fun SignUpScreen() {
+fun SignUpScreen(backStack: NavBackStack<NavKey>, key: Destination.SignUpScreen) {
 
     val viewModel: SignUpViewModel = koinViewModel()
+    val data = viewModel.signUpState.collectAsStateWithLifecycle()
+    AppLogger.d(tag = TAG, message = "data is ${data.value.data}")
 
     Scaffold { innerPadding ->
         Column(
@@ -145,14 +147,11 @@ fun SignUpScreen() {
                     style = MaterialTheme.typography.bodySmall.copy(
                         fontWeight = FontWeight.W500,
                         color = Color.Red,
-                    ), modifier = Modifier.clickable {})
+                    ), modifier = Modifier.clickable {
+                        backStack.removeLastOrNull()
+                    })
             }
         }
     }
 }
 
-@Composable
-@Preview(showBackground = true)
-fun SignUpScreenPreview() {
-    SignUpScreen()
-}
