@@ -63,6 +63,7 @@ kotlin {
 
             // navigation
             implementation(libs.navigation3.ui)
+            implementation(libs.jetbrains.lifecycle.viewmodelNavigation3)
           //  implementation(libs.navigation3.runtime)
 
 
