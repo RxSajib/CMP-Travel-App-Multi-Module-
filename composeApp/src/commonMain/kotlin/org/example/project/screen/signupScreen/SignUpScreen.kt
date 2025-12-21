@@ -51,7 +51,7 @@ fun SignUpScreen(backStack: NavBackStack<NavKey>, key: Destination.SignUpScreen)
 
     val viewModel: SignUpViewModel = koinViewModel()
     val data = viewModel.signUpState.collectAsStateWithLifecycle()
-    AppLogger.d(tag = TAG, message = "data is ${data.value.data}")
+    AppLogger.d(tag = TAG, message = "data is ${key.profile?.subject?.courseID}")
 
     Scaffold { innerPadding ->
         Column(

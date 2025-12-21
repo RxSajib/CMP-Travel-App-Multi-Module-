@@ -37,7 +37,7 @@ fun AppNavigation() {
                 SignInScreen(backStack)
             }
             entry<Destination.SignUpScreen> {key ->
-                SignUpScreen(backStack, key)
+                SignUpScreen(backStack = backStack, key = key)
             }
         }
     )

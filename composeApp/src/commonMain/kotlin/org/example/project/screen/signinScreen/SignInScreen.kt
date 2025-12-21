@@ -30,6 +30,8 @@ import org.example.project.component.HeightGap
 import org.example.project.component.MyCustomButton
 import org.example.project.component.MyCustomInputFiled
 import org.example.project.navigation.Destination
+import org.example.project.navigation.Profile
+import org.example.project.navigation.Subject
 import org.example.project.utils.AppLogger
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
@@ -129,7 +131,9 @@ fun SignInScreen(backStack: NavBackStack<NavKey>) {
                         fontWeight = FontWeight.W500,
                         color = Color.Red,
                     ), modifier = Modifier.clickable {
-                        backStack.add(element = Destination.SignUpScreen())
+                        backStack.add(element = Destination.SignUpScreen(
+                            profile = Profile(name = "Sajib Roy", subject = Subject(courseID = "CSE06901577"))
+                        ))
                     })
             }
         }
