@@ -6,6 +6,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import com.sajib.data.appConstant.AppConstant
 
+private const val TAG = "SignInViewModel"
 class SignInViewModel : ViewModel() {
 
     var inputEmailAddressInput by mutableStateOf("")
@@ -22,5 +23,8 @@ class SignInViewModel : ViewModel() {
 
     val isButtonEnableForSignIn: Boolean
         get() = isValidEmailAddress && passwordInput.isNotEmpty() && passwordInput.length >= 6
+
+
+
 
 }

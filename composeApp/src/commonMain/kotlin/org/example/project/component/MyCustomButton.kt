@@ -29,7 +29,7 @@ fun MyCustomButton(
         enabled = isEnable,
         colors = ButtonDefaults.buttonColors(
             contentColor = textColor,
-            containerColor = if(isEnable) backgroundColor else Color.Gray
+            containerColor = if(isEnable) MaterialTheme.colorScheme.primary else Color.Gray
         ),
         modifier = modifier.fillMaxWidth()
     ) {

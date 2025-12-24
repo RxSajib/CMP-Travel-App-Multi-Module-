@@ -51,4 +51,16 @@ class SignUpViewModel constructor(val signUpAccountUseCase: SignUpAccountUseCase
     val isSignUpButtonEnable
         get() = nameInput.isNotEmpty() && emailInput.isNotEmpty() && passwordInput.isNotEmpty() && confirmPasswordInput.isNotEmpty()
                 && passwordInput.length >= 6 && passwordInput == confirmPasswordInput && isValidEmailAddress
+
+
+
+    init {
+        print("sign up viewmodel is init")
+    }
+
+    override fun onCleared() {
+        print("sign up viewmodel is cleared")
+        super.onCleared()
+    }
+
 }

@@ -10,7 +10,7 @@ import androidx.navigation3.ui.NavDisplay
 import androidx.savedstate.serialization.SavedStateConfiguration
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.modules.polymorphic
-import org.example.project.screen.signinScreen.SignInScreen
+import org.example.project.ui.screen.signinScreen.SignInScreen
 import org.example.project.ui.screen.signupScreen.SignUpScreen
 
 @Composable

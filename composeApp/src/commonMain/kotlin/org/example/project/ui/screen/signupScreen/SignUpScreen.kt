@@ -1,10 +1,9 @@
-package org.example.project.screen.signinScreen
+package org.example.project.ui.screen.signupScreen
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -22,44 +21,47 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation3.runtime.NavBackStack
 import androidx.navigation3.runtime.NavKey
-import com.sajib.presentation.ui.signInScreen.SignInViewModel
+import com.sajib.presentation.ui.signupScreen.SignUpViewModel
 import org.example.project.component.BackButton
 import org.example.project.component.HeightGap
 import org.example.project.component.MyCustomButton
 import org.example.project.component.MyCustomInputFiled
 import org.example.project.navigation.Destination
-import org.example.project.navigation.Profile
-import org.example.project.navigation.Subject
 import org.example.project.utils.AppLogger
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
 import travelapp.composeapp.generated.resources.Res
-import travelapp.composeapp.generated.resources.dont_have_an_account
+import travelapp.composeapp.generated.resources.already_have_account
+import travelapp.composeapp.generated.resources.confirm_password
 import travelapp.composeapp.generated.resources.enter_email
+import travelapp.composeapp.generated.resources.enter_name
 import travelapp.composeapp.generated.resources.enter_password
-import travelapp.composeapp.generated.resources.forgot_password
-import travelapp.composeapp.generated.resources.sign_in_account
-import travelapp.composeapp.generated.resources.sign_in_now
-import travelapp.composeapp.generated.resources.sign_in_now_details
-import travelapp.composeapp.generated.resources.sign_up
+import travelapp.composeapp.generated.resources.sign_in
+import travelapp.composeapp.generated.resources.sign_up_account
+import travelapp.composeapp.generated.resources.sign_up_now
+import travelapp.composeapp.generated.resources.sign_up_now_details
 
-private const val TAG = "SignInScreen"
+private const val TAG = "SignUpScreen"
 @Composable
-fun SignInScreen(backStack: NavBackStack<NavKey>) {
+fun SignUpScreen(backStack: NavBackStack<NavKey>, key: Destination.SignUpScreen) {
 
-    val viewModel: SignInViewModel = koinViewModel()
-
-    AppLogger.d(tag = TAG, message = viewModel.isButtonEnableForSignIn.toString())
+    val viewModel: SignUpViewModel = koinViewModel()
+    val data = viewModel.signUpState.collectAsStateWithLifecycle()
+    AppLogger.d(tag = TAG, message = "data is ${key.profile?.subject?.courseID}")
 
     Scaffold { innerPadding ->
-        Column(modifier = Modifier.padding(innerPadding).fillMaxSize().padding(16.dp).verticalScroll(state = rememberScrollState())) {
+        Column(
+            modifier = Modifier.fillMaxSize().padding(innerPadding).verticalScroll(
+                rememberScrollState()
+            ).padding(16.dp)
+        ) {
             BackButton(imageVector = Icons.AutoMirrored.Default.ArrowBack, onclick = {})
-
             HeightGap(height = 20.dp)
             Text(
-                text = stringResource(Res.string.sign_in_now),
+                text = stringResource(Res.string.sign_up_now),
                 style = MaterialTheme.typography.titleLarge.copy(
                     fontWeight = FontWeight.W400
                 ),
@@ -68,18 +70,27 @@ fun SignInScreen(backStack: NavBackStack<NavKey>) {
             )
             HeightGap(height = 10.dp)
             Text(
-                text = stringResource(Res.string.sign_in_now_details),
+                text = stringResource(Res.string.sign_up_now_details),
                 modifier = Modifier.fillMaxWidth(),
                 textAlign = TextAlign.Center
             )
             HeightGap(height = 20.dp)
-
+            MyCustomInputFiled(
+                placeHolderText = stringResource(Res.string.enter_name),
+                text = viewModel.nameInput,
+                onValueChange = { nameInput ->
+                    viewModel.nameInput = nameInput
+                },
+                isPasswordInput = false,
+                isVisiblePasswordChange = {},
+                isPasswordVisibility = true,
+            )
+            HeightGap(height = 10.dp)
             MyCustomInputFiled(
                 placeHolderText = stringResource(Res.string.enter_email),
-                text = viewModel.inputEmailAddressInput,
-                onValueChange = { emailAddressInput ->
-                    viewModel.inputEmailAddressInput = emailAddressInput
-                    viewModel.onEmailChanged(emailAddressInput)
+                text = viewModel.emailInput,
+                onValueChange = { emailInput ->
+                    viewModel.emailInput = emailInput
                 },
                 isPasswordInput = false,
                 isVisiblePasswordChange = {},
@@ -94,27 +105,32 @@ fun SignInScreen(backStack: NavBackStack<NavKey>) {
                 },
                 isPasswordInput = true,
                 isVisiblePasswordChange = {
-                    viewModel.isPasswordVisible = !viewModel.isPasswordVisible
+                    viewModel.isPasswordShows.value = !viewModel.isPasswordShows.value
                 },
-                isPasswordVisibility = viewModel.isPasswordVisible
+                isPasswordVisibility = viewModel.isPasswordShows.value
             )
-            HeightGap(height = 5.dp)
-            Row {
-                Spacer(modifier = Modifier.weight(1f))
-                Text(
-                    text = stringResource(Res.string.forgot_password),
-                    style = MaterialTheme.typography.bodySmall,
-                    modifier = Modifier.clickable {
-
-                    })
-            }
+            HeightGap(height = 10.dp)
+            MyCustomInputFiled(
+                placeHolderText = stringResource(Res.string.confirm_password),
+                text = viewModel.confirmPasswordInput,
+                onValueChange = { conformPasswordInput ->
+                    viewModel.confirmPasswordInput = conformPasswordInput
+                },
+                isPasswordInput = true,
+                isVisiblePasswordChange = {
+                    viewModel.isConfirmPasswordShows.value = !viewModel.isConfirmPasswordShows.value
+                },
+                isPasswordVisibility = viewModel.isConfirmPasswordShows.value
+            )
             HeightGap(height = 20.dp)
             MyCustomButton(
-                title = stringResource(Res.string.sign_in_account),
+                title = stringResource(Res.string.sign_up_account),
                 modifier = Modifier,
-                onClickButton = {},
-                isEnable = viewModel.isButtonEnableForSignIn)
-
+                onClickButton = {
+                    viewModel.signUpAccount()
+                },
+                isEnable = viewModel.isSignUpButtonEnable
+            )
             HeightGap(height = 20.dp)
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -122,22 +138,19 @@ fun SignInScreen(backStack: NavBackStack<NavKey>) {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = stringResource(Res.string.dont_have_an_account),
+                    text = stringResource(Res.string.already_have_account),
                     style = MaterialTheme.typography.bodySmall
                 )
                 Text(
-                    text = stringResource(Res.string.sign_up),
+                    text = stringResource(Res.string.sign_in),
                     style = MaterialTheme.typography.bodySmall.copy(
                         fontWeight = FontWeight.W500,
                         color = Color.Red,
                     ), modifier = Modifier.clickable {
-                        backStack.add(element = Destination.SignUpScreen(
-                            profile = Profile(name = "Sajib Roy", subject = Subject(courseID = "CSE06901577"))
-                        ))
+                        backStack.removeLastOrNull()
                     })
             }
         }
-
     }
 }
 
