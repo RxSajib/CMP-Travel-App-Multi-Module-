@@ -9,6 +9,10 @@ sealed interface Destination : NavKey {
     data object SignInScreen : Destination
     @Serializable
     data class SignUpScreen(val profile: Profile?= null) : Destination
+    @Serializable
+    data object HomeScreen : Destination
+    @Serializable
+    data object CategoryScreen : Destination
 }
 
 

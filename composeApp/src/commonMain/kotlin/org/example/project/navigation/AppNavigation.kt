@@ -10,6 +10,8 @@ import androidx.navigation3.ui.NavDisplay
 import androidx.savedstate.serialization.SavedStateConfiguration
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.modules.polymorphic
+import org.example.project.ui.screen.category.CategoryScreen
+import org.example.project.ui.screen.homeScreen.HomeScreen
 import org.example.project.ui.screen.signinScreen.SignInScreen
 import org.example.project.ui.screen.signupScreen.SignUpScreen
 
@@ -21,11 +23,13 @@ fun AppNavigation() {
             polymorphic(NavKey::class) {
                 subclass(Destination.SignInScreen::class, Destination.SignInScreen.serializer())
                 subclass(Destination.SignUpScreen::class, Destination.SignUpScreen.serializer())
+                subclass(Destination.HomeScreen::class, Destination.HomeScreen.serializer())
+                subclass(Destination.CategoryScreen::class, Destination.CategoryScreen.serializer())
             }
         }
     }
 
-    val element = arrayOf<Destination>(Destination.SignInScreen)
+    val element = arrayOf<Destination>(Destination.HomeScreen)
     val backStack = rememberNavBackStack(configuration = config, elements = element)
 
 
@@ -44,6 +48,12 @@ fun AppNavigation() {
             }
             entry<Destination.SignUpScreen> {key ->
                 SignUpScreen(backStack = backStack, key = key)
+            }
+            entry<Destination.HomeScreen> {
+                HomeScreen(backStack = backStack)
+            }
+            entry<Destination.CategoryScreen> {
+                CategoryScreen(backStack = backStack)
             }
         }
     )

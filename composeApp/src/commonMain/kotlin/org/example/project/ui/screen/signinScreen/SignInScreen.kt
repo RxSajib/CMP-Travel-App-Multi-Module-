@@ -113,7 +113,9 @@ fun SignInScreen(backStack: NavBackStack<NavKey>) {
             MyCustomButton(
                 title = stringResource(Res.string.sign_in_account),
                 modifier = Modifier,
-                onClickButton = {},
+                onClickButton = {
+                    backStack.add(Destination.HomeScreen)
+                },
                 isEnable = viewModel.isButtonEnableForSignIn)
 
             HeightGap(height = 20.dp)

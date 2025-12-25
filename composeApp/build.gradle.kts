@@ -35,6 +35,7 @@ kotlin {
             implementation(libs.androidx.activity.compose)
             implementation("io.coil-kt.coil3:coil-network-okhttp:3.3.0")
             implementation(libs.ktor.client.okhttp)
+            implementation(libs.coil3.coil.network.okhttp)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -66,6 +67,10 @@ kotlin {
             implementation(libs.jetbrains.lifecycle.viewmodelNavigation3)
           //  implementation(libs.navigation3.runtime)
 
+            // coil compose
+            implementation(libs.coil.compose)
+
+            // coil compose
 
             implementation(project(":data"))
             implementation(project(":domain"))
@@ -82,6 +87,7 @@ kotlin {
             implementation(libs.kotlinx.coroutinesSwing)
             implementation(libs.coil3.coil.network.okhttp)
             implementation(libs.ktor.client.okhttp)
+            implementation(libs.coil3.coil.network.okhttp)
         }
     }
 }

@@ -1,8 +1,10 @@
 package com.sajib.presentation.di
 
 import com.sajib.domain.usecase.GetAllListingUseCase
+import com.sajib.domain.usecase.GetCategoryUseCase
 import com.sajib.domain.usecase.SignUpAccountUseCase
 import com.sajib.presentation.listing.TravelListingViewModel
+import com.sajib.presentation.ui.categoryScreen.CategoryViewModel
 import com.sajib.presentation.ui.signInScreen.SignInViewModel
 import com.sajib.presentation.ui.signupScreen.SignUpViewModel
 import org.koin.core.module.dsl.viewModel
@@ -20,5 +22,9 @@ val presentationModule = module {
 
     viewModel {
         SignUpViewModel(signUpAccountUseCase = get<SignUpAccountUseCase>())
+    }
+
+    viewModel {
+        CategoryViewModel(categoryUseCase = get<GetCategoryUseCase>())
     }
 }

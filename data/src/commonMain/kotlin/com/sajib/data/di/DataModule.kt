@@ -2,8 +2,10 @@ package com.sajib.data.di
 
 import com.sajib.data.datasources.DummyDataSource
 import com.sajib.data.datasources.RemoteDataSources
+import com.sajib.data.repository.CategoryRepositoryImpl
 import com.sajib.data.repository.TravelingListingImpl
 import com.sajib.data.repository.UserRepositoryImpl
+import com.sajib.domain.repository.CategoryRepository
 import com.sajib.domain.repository.ListingRepository
 import com.sajib.domain.repository.UserRepository
 import io.ktor.client.HttpClient
@@ -58,5 +60,9 @@ val dataModule = module{
 
     single<UserRepository> {
         UserRepositoryImpl(remoteDataSources = get())
+    }
+
+    single<CategoryRepository> {
+        CategoryRepositoryImpl(remoteDataSources = get())
     }
 }

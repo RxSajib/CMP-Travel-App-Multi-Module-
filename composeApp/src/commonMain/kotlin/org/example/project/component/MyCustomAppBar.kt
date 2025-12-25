@@ -31,17 +31,24 @@ import travelapp.composeapp.generated.resources.user
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MyCustomAppBar(homeHeaderEnable : Boolean = false, isBackButtonEnable : Boolean = true, isActonButtonEnable : Boolean = false, title : String) {
+fun MyCustomAppBar(
+    homeHeaderEnable: Boolean = false,
+    isBackButtonEnable: Boolean = true,
+    isActonButtonEnable: Boolean = false,
+    title: String,
+    onBackPress: () -> Unit
+) {
     TopAppBar(
         title = {
-            if(homeHeaderEnable){
+            if (homeHeaderEnable) {
                 Row(modifier = Modifier.fillMaxWidth()) {
                     Image(
                         painter = painterResource(Res.drawable.user),
                         contentDescription = null,
                         modifier = Modifier.size(40.dp).clip(shape = CircleShape),
-                        contentScale = ContentScale.Crop)
-                    WidthGap(10.dp)
+                        contentScale = ContentScale.Crop
+                    )
+                    WidthGap(15.dp)
                     Column(modifier = Modifier.fillMaxWidth()) {
                         Text(
                             text = "Sajib Roy",
@@ -66,13 +73,13 @@ fun MyCustomAppBar(homeHeaderEnable : Boolean = false, isBackButtonEnable : Bool
                         )
                     }
                 }
-            }else {
+            } else {
                 Text(text = title)
             }
 
         },
         actions = {
-            if(isActonButtonEnable){
+            if (isActonButtonEnable) {
                 IconButton(onClick = {}) {
                     Icon(
                         painter = painterResource(Res.drawable.search_alt_svgrepo_com),
@@ -89,8 +96,10 @@ fun MyCustomAppBar(homeHeaderEnable : Boolean = false, isBackButtonEnable : Bool
 
         },
         navigationIcon = {
-            if(isBackButtonEnable){
-                IconButton(onClick = {}) {
+            if (isBackButtonEnable) {
+                IconButton(onClick = {
+                    onBackPress.invoke()
+                }) {
                     Icon(
                         painter = painterResource(Res.drawable.left_arrow_svgrepo_com),
                         contentDescription = null
@@ -109,6 +118,7 @@ fun MyCustomAppBarPreview() {
         isBackButtonEnable = true,
         isActonButtonEnable = true,
         title = "Details 01",
-        homeHeaderEnable = true
+        homeHeaderEnable = true,
+        onBackPress = {}
     )
 }
